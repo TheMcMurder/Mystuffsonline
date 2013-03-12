@@ -1,5 +1,10 @@
 <html>
-<head><title><%=request.getParameter("title")%></title></head>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<head>
+
+<title><%=request.getParameter("title")%></title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" type="stylesheet" href="bootstrap/css/bootstrap-responsive.css"/>
+<link rel="stylesheet" type="stylesheet" href="bootstrap/css/bootstrap.css"/>
+</head>
 <body>
     
