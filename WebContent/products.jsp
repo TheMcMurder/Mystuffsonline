@@ -42,8 +42,16 @@
 				url:"edu.byu.isys.isys413.jmcmurdi.actions.ProductSearch.action",
 				data:{text:inputtext, store:storeid}
 			}).done(function(data){
-				console.log('success');
-				console.log(data);
+				//console.log('success');
+				//console.log(data);
+				var htmlstring = "";
+				var jsonlength = $.parseJSON(data).length
+				var parsedData = JSON.parse(data);
+				
+				for(var j = 0; j <jsonlength; j++){
+					htmlstring += '<div class ="product"> Prodcut Name: ' + parsedData[j].name '<br>Product Price: $'+parsedData[j].price+'<br><button class = btn btn-success id ="'pardedData[j].id+'">Purchase!</button </div>';
+				}
+				$('#searchresults').html(htmlstring);
 			}).fail(function(data){
 				console.log('failure');
 			});
