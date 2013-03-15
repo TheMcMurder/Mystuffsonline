@@ -1,13 +1,15 @@
 <jsp:include page="/header.jsp">
-  <jsp:param name="title" value="Justin's Very cool demo site"/>
+  <jsp:param name="title" value="MyStuffsonline"/>
 </jsp:include>
+<div class = "container" width = 60%>
+	<div class = "page-header">
+ 		<center><h1>MyStuffsOnline<small>(beta)</small></h1> </center>
+	</div>
+	<div class = "hero-unit">
+  		<p>Please forgive our dust, but while we build go ahead and create an account.  <i>You won't regret it </i></p> 
+        <a href="CreateCustomer.jsp" class="btn btn-primary btn-large">Create Your Account</a>
+    	
 
-  <p>Welcome to Mystuffsonline.com!!! We're still in beta but please go ahead and create your account while we build, thank you for your patience.
-  </p> 
-  <p>
-    <ul>
-        <li><a href="CreateCustomer.jsp">Create Your Account</a></li>
-    </ul>
-  </p>
-
+  	</div>
+</div>
 <jsp:include page="/footer.jsp"/>

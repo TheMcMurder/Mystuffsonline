@@ -22,7 +22,7 @@ import javax.servlet.http.*;
  *     you'll need to modify the package to match #1):
             <servlet>
                 <servlet-name>FrontController</servlet-name>
-                <servlet-class>edu.byu.isys413.cca.web.FrontController</servlet-class>
+                <servlet-class>edu.byu.isys413.jmcmurdi.web.FrontController</servlet-class>
             </servlet>
             <servlet-mapping>
                 <servlet-name>FrontController</servlet-name>

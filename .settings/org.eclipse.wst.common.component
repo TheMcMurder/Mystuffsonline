@@ -6,6 +6,9 @@
         <dependent-module archiveName="MyStuff.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/MyStuff/MyStuff">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="mail.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/justinmcmurdie/Documents/Development/javamail-1.4.7/mail.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="MystuffWeb"/>
         <property name="java-output-path" value="/MystuffWeb/build/classes"/>
     </wb-module>

@@ -33,17 +33,30 @@ public class CreateCustomer implements Action {
 		// ensure we have a number to guess for
 		HttpSession session = request.getSession();
 		try{
+			//TODO comment me out when you go live
+			CreateDB.main(null);
+			//end comment out at launch
 			
-		
+		String phone1 = request.getParameter("phone1");
+		String phone2= request.getParameter("phone2");
+		String phone3= request.getParameter("phone3");
 		Customer c = BusinessObjectDAO.getInstance().create("Customer");
 		c.setFirstName(request.getParameter("firstname"));
 		c.setLastName(request.getParameter("lastname"));
 		c.setPassword(request.getParameter("password"));
+//		c.setPassword("test");
+//		System.out.println("Password: " + request.getParameter("password"));
 		c.setAddress(request.getParameter("address"));
 		c.setEmail(request.getParameter("email"));
-		c.setPhone(request.getParameter("phone1"+"phone2" + "phone3"));
+		c.setPhone(phone1 + phone2 + phone3);
+//		System.out.println("PHone: " + request.getParameter("phone1"));
+//		c.setPhone("Hobbits don't have phones you fool of a took");
 		c.setState(request.getParameter("state"));
 		c.setZip(request.getParameter("zip"));
+		c.setVerified(false);
+		String guid = GUID.generate();
+		c.setValidation(guid);
+		request.setAttribute("validationGUID", c.getValidation());
 		request.setAttribute("customer", "Customer Name: " +c.getFirstName() + " " + c.getLastName());
 		System.out.println("Customer Name: " +c.getFirstName() + " " + c.getLastName());
 		c.save();
@@ -52,7 +65,7 @@ public class CreateCustomer implements Action {
 	}
 		
 		
-		return "index.jsp";
+		return "/accountcreated.jsp";
 
 	}
 }
