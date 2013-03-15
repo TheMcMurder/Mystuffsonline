@@ -33,9 +33,24 @@ public class Login implements Action {
 		// ensure we have a number to guess for
 		HttpSession session = request.getSession();
 		
-		
-		
-		return "/Login.jsp";
+		String email = (String) request.getParameter("inputEmail");
+		String password = (String) request.getParameter("inputPassword");
+		//System.out.println("Email: " + email + " password: " + password);
+		Customer c = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", email));
+		if(c != null){
+			if (c.getPassword().equals(password)){
+				session.setAttribute("customer", c);
+				return "/index.jsp";
+			}
+			else{
+				session.setAttribute("message", "incorrect username or password");
+				return "/Login.jsp";
+			}
+			
+		}else{
+			session.setAttribute("message", "incorrect username or password");
+			return "/Login.jsp";
+		}
 
 	}
 }

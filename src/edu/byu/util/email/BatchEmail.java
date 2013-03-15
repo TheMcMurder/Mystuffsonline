@@ -32,12 +32,12 @@ public class BatchEmail {
             props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
             props.put("mail.smtp.socketFactory.fallback", "false");
             Session session = Session.getDefaultInstance(props, new ForcedAuthenticator());
-            Message message = new MimeMessage(session);
+            MimeMessage message = new MimeMessage(session);
             try {
 				message.setFrom(new InternetAddress(fromAddress, fromName));
 				 message.setRecipient(Message.RecipientType.TO, new InternetAddress(toAddress));
 		            message.setSubject(subject);
-		            message.setText(msg);
+		            message.setText(msg, "utf-8", "html");
 		            message.setSentDate(new Date());
 		            Transport.send(message);
 			} catch (javax.mail.MessagingException e) {

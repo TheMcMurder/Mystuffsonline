@@ -13,18 +13,18 @@
 
 
 
-		<form class="form-horizontal" method="post" id="signupform" action="edu.byu.isys413.jmcmurdi.actions.Login.action">
+		<form class="form-horizontal" method="post" id="login" action="edu.byu.isys413.jmcmurdi.actions.Login.action">
 			<ledgend>Login</ledgend>
 			<div class="control-group">
-				<label class="control-label" for="inputEmail">Email</label>
+				<label class="control-label">Email</label>
 				<div class="controls">
-					<input type="text" id="inputEmail" placeholder="Email">
+					<input type="text" name="inputEmail" placeholder="Email">
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="inputPassword">Password</label>
+				<label class="control-label" >Password</label>
 				<div class="controls">
-					<input type="password" id="inputPassword" placeholder="Password">
+					<input type="password" name="inputPassword" placeholder="Password">
 				</div>
 			</div>
 			<div class="control-group">

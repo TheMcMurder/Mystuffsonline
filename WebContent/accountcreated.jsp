@@ -30,9 +30,10 @@
   String tempsymbol = "%40";
   String emailaddress = to.replaceAll("@", tempsymbol);
   String address = "http://localhost:2020/MystuffWeb/edu.byu.isys413.jmcmurdi.actions.Valadate.action?vcode=" + test + "&emailvcode=" + emailaddress + "&mysubmitter=Create+Account";
-
+/* 
   message = "This is your lucky day.  You've just signed up for MyStuffsOnline.com \nRemember to validate your account by going here "
-		  + address;
+		  + address; */
+  message = "This is your lucky day! <br> You've just registerd for a mystuffsonline.com account. <br>Remeber to validate your account by clicking this link: <a href = " + address +">Validate Account</a> <br> Welcome to the club! ";
   //System.out.println("Customer object name is : " + c.getFirstName());
   try{
 	  BatchEmail.send(from, fromname, to, subject, message);
