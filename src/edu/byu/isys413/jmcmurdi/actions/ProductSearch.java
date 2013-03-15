@@ -1,5 +1,6 @@
 package edu.byu.isys413.jmcmurdi.actions;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.*;
 
 import com.google.gson.Gson;
@@ -35,7 +36,11 @@ public class ProductSearch implements Action {
 		// ensure we have a number to guess for
 		HttpSession session = request.getSession();
 		try{
+			//System.out.println(request.getParameter("store"));
 			Store s1 = BusinessObjectDAO.getInstance().read(request.getParameter("store"));
+			if(s1 == null){
+				System.out.println("Oh shit");
+			}
 			
 			List<StoreProd> spList = BusinessObjectDAO.getInstance().searchForList("StoreProd", new SearchCriteria("id", s1.getId()));
 			List<PProduct> ppList = BusinessObjectDAO.getInstance().searchForList("PProduct", new SearchCriteria("id", s1.getId()));

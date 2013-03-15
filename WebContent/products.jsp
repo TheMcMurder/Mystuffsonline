@@ -10,12 +10,13 @@
 <div class="container" width=60%>
 	
 	<div class="hero-unit">
-		<select>
+		<select id = "storebox">
 			<% LinkedList <Store> stores = new LinkedList <Store>(); %>
 			<% stores = (LinkedList)session.getAttribute("storelist"); %>
 			<%
 				for(Store s:stores){
-				out.println("<option value = " + s.getId() + ">" + s.getLocation() + "</option>");
+				out.println("<option value = " + s.getId() + " id = "+ s.getId() + ">" + s.getLocation() + "</option>");
+				//System.out.println("Store: " + s.getLocation());
 			}
 			
 			
@@ -36,7 +37,7 @@
 		$('#searchbox').keyup(function(){
 			var inputtext = $(this).val();
 			var storeid = $('#storebox').val();
-			
+			console.log(storeid);
 			$.ajax({
 				type: "POST",
 				url:"edu.byu.isys413.jmcmurdi.actions.ProductSearch.action",

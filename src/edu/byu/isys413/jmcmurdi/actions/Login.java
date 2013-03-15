@@ -39,6 +39,9 @@ public class Login implements Action {
 		Customer c = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", email));
 		LinkedList <Store> stores = new LinkedList <Store>();
 		stores = (LinkedList)BusinessObjectDAO.getInstance().searchForAll("Store");
+//		for (Store s: stores){
+//			System.out.println("Store: "+ s.getLocation());
+//		}
 		session.setAttribute("storelist", stores);
 		if(c != null){
 			if (c.getPassword().equals(password)){
