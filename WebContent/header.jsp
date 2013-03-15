@@ -1,3 +1,7 @@
+<jsp:directive.page import="java.util.*"/> 
+<jsp:directive.page import="edu.byu.isys414.jmcmurdi.IntexII.*"/> 
+<jsp:directive.page import="edu.byu.isys413.jmcmurdi.web.*"/>
+<jsp:directive.page import = "javax.servlet.http.*"/>
 <html>
 <head>
 

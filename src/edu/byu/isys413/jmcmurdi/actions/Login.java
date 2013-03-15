@@ -37,6 +37,9 @@ public class Login implements Action {
 		String password = (String) request.getParameter("inputPassword");
 		//System.out.println("Email: " + email + " password: " + password);
 		Customer c = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", email));
+		ArrayList <Store> stores = new ArrayList <Store>();
+		stores = (ArrayList)BusinessObjectDAO.getInstance().searchForAll("Store");
+		session.setAttribute("storelist", stores);
 		if(c != null){
 			if (c.getPassword().equals(password)){
 				//session.setAttribute("customer", c);
