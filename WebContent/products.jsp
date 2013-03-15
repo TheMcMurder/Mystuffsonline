@@ -11,8 +11,16 @@
 	
 	<div class="hero-unit">
 		<select>
-			<% ArrayList <Store> stores = new ArrayList <Store>(); %>
-			<% stores = (ArrayList)session.getAttribute("storelist"); %>
+			<% LinkedList <Store> stores = new LinkedList <Store>(); %>
+			<% stores = (LinkedList)session.getAttribute("storelist"); %>
+			<%
+				for(Store s:stores){
+				out.println("<option value = " + s.getId() + ">" + s.getLocation() + "</option>");
+			}
+			
+			
+			%>
+			</select>
 		</select>
 		<input type="text" class="input-medium search-query">
 		<button type="submit" class="btn">Search</button>
