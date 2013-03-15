@@ -39,13 +39,14 @@
 			
 			$.ajax({
 				type: "POST",
-				url:"edu.byu.isys.isys413.jmcmurdi.actions.ProductSearch.action",
+				url:"edu.byu.isys413.jmcmurdi.actions.ProductSearch.action",
 				data:{text:inputtext, store:storeid}
 			}).done(function(data){
 				//console.log('success');
 				//console.log(data);
 				var htmlstring = "";
-				var jsonlength = $.parseJSON(data).length
+				var jsonlength = $.parseJSON(data).length;
+				console.log(jsonlength);
 				var parsedData = JSON.parse(data);
 				
 				for(var j = 0; j <jsonlength; j++){
