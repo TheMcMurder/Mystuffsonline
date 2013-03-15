@@ -31,7 +31,7 @@
 		<% 
 		System.out.println(request.getAttribute("message"));
 		if(request.getAttribute("message") != null){
-			System.out.println("Message : " + request.getAttribute("message"));
+			//System.out.println("Message : " + request.getAttribute("message"));
 			out.println("<div id = \"fail\" Style = \"Color:Red;\"; >");
 			out.println("<p></p><center>Something didn't work but don't give up!<br>Maybe Your username or password was incorrect<br>or maybe your account hasn't been validated</center>");
 			out.println("</div>");	
