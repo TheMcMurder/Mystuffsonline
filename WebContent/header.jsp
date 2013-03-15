@@ -5,6 +5,13 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet" type="stylesheet" href="bootstrap/css/bootstrap-responsive.css"/>
 <link rel="stylesheet" type="stylesheet" href="bootstrap/css/bootstrap.css"/>
+<div class="page-header">
+		<center>
+			<h1>
+				MyStuffsOnline<small>(beta)</small>
+			</h1>
+		</center>
+	</div>
 </head>
 <body>
     

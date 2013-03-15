@@ -2,13 +2,7 @@
 	<jsp:param name="title" value="MyStuffsOnlineStore" />
 </jsp:include>
 <div class="container" width=60%>
-	<div class="page-header">
-		<center>
-			<h1>
-				MyStuffsOnline<small>(beta)</small>
-			</h1>
-		</center>
-	</div>
+	
 	<div class="hero-unit">
 
 		<input type="text" class="input-medium search-query">

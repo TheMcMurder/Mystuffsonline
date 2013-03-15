@@ -2,13 +2,6 @@
 	<jsp:param name="title" value="MyStuffsonline" />
 </jsp:include>
 <div class="container" style = "width:600px";>
-	<div class="page-header">
-		<center>
-			<h1>
-				MyStuffsOnline<small>(beta)</small>
-			</h1>
-		</center>
-	</div>
 	<div class="hero-unit">
 
 
