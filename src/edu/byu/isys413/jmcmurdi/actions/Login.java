@@ -39,16 +39,18 @@ public class Login implements Action {
 		Customer c = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", email));
 		if(c != null){
 			if (c.getPassword().equals(password)){
-				session.setAttribute("customer", c);
+				//session.setAttribute("customer", c);
+				//Customer cust = (Customer)(session.getAttribute("customer"));
+				//System.out.println(cust.getFirstName());
 				return "/index.jsp";
 			}
 			else{
-				session.setAttribute("message", "incorrect username or password");
+				request.setAttribute("message", "incorrect username or password");
 				return "/Login.jsp";
 			}
 			
 		}else{
-			session.setAttribute("message", "incorrect username or password");
+			request.setAttribute("message", "incorrect username or password");
 			return "/Login.jsp";
 		}
 

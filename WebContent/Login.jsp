@@ -35,7 +35,9 @@
 				</div>
 		</form>
 		<div></div>
-		<% if(request.getAttribute("message") != null){
+		<% 
+		System.out.println(request.getAttribute("message"));
+		if(request.getAttribute("message") != null){
 			System.out.println("Message : " + request.getAttribute("message"));
 			out.println("<div id = \"fail\" Style = \"Color:Red;\"; >");
 			out.println("UserName or Password is incorrect - don't give up!");
