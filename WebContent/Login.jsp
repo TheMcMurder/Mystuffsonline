@@ -13,7 +13,7 @@
 
 
 
-		<form class="form-horizontal" method="post" id="signupform" action="#">
+		<form class="form-horizontal" method="post" id="signupform" action="edu.byu.isys413.jmcmurdi.actions.Login.action">
 			<ledgend>Login</ledgend>
 			<div class="control-group">
 				<label class="control-label" for="inputEmail">Email</label>
@@ -35,12 +35,17 @@
 				</div>
 		</form>
 		<div></div>
-		<div id = "fail" Style = "Color:Red; Display:none"; >
-			UserName or Password is incorrect - don't give up!
-		</div>
+		<% if(request.getAttribute("message") != null){
+			System.out.println("Message : " + request.getAttribute("message"));
+			out.println("<div id = \"fail\" Style = \"Color:Red;\"; >");
+			out.println("UserName or Password is incorrect - don't give up!");
+			out.println("</div>");	
+			
+		}%>
+		
 	</div>
 </div>
 </div>
 <jsp:include page="/footer.jsp" />
 
-</div>
+</div>;

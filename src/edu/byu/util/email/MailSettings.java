@@ -15,7 +15,7 @@ public class MailSettings {
 	
 	// For SMTP authentication, set the next two lines to your username and password for the mail server
         public static String smtpUserName="jjmac383@gmail.com";
-        public static String smtpPassword="d1fac406a3";
+        public static String smtpPassword="";
 	
 
 }

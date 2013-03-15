@@ -34,7 +34,8 @@ public class Login implements Action {
 		HttpSession session = request.getSession();
 		
 		
-		return "/accountcreated.jsp";
+		
+		return "/Login.jsp";
 
 	}
 }
