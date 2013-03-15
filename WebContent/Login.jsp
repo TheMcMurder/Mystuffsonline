@@ -29,7 +29,7 @@
 		</form>
 		<div></div>
 		<% 
-		System.out.println(request.getAttribute("message"));
+		//System.out.println(request.getAttribute("message"));
 		if(request.getAttribute("message") != null){
 			//System.out.println("Message : " + request.getAttribute("message"));
 			out.println("<div id = \"fail\" Style = \"Color:Red;\"; >");
