@@ -22,7 +22,7 @@
 			%>
 			</select>
 		</select>
-		<input type="text" class="input-medium search-query">
+		<input type="text" id="searchbox" class="input-medium search-query">
 		<button type="submit" class="btn">Search</button>
 	
 		<p></p>
@@ -49,7 +49,8 @@
 				var parsedData = JSON.parse(data);
 				
 				for(var j = 0; j <jsonlength; j++){
-					htmlstring += '<div class ="product"> Prodcut Name: ' + parsedData[j].name '<br>Product Price: $'+parsedData[j].price+'<br><button class = btn btn-success id ="'pardedData[j].id+'">Purchase!</button </div>';
+					console.log("loop");
+					//htmlstring += '<div class ="product"> Prodcut Name: ' + parsedData[j].name '<br>Product Price: $'+parsedData[j].price+'<br><button class = btn btn-success id ="'parsedData[j].id+'">Purchase!</button </div>';
 				}
 				$('#searchresults').html(htmlstring);
 			}).fail(function(data){

@@ -61,7 +61,7 @@ public class ProductSearch implements Action {
 			Gson gson = new Gson();
 			String json1 = gson.toJson(jsonthingy);
 			request.setAttribute("prodList", json1);
-			return "/productsearch.jsp";
+			return "/product_ajax.jsp";
 			
 		}catch (Exception e){
 			e.printStackTrace();

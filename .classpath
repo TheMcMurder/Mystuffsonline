@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.23-bin.jar"/>
 	<classpathentry kind="lib" path="/Users/justinmcmurdie/Documents/Development/javamail-1.4.7/mail.jar"/>
 	<classpathentry kind="lib" path="/Users/justinmcmurdie/Documents/Development/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="gson-2.2.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
