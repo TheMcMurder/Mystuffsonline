@@ -34,7 +34,7 @@ public class CreateCustomer implements Action {
 		HttpSession session = request.getSession();
 		try{
 			//TODO comment me out when you go live
-			CreateDB.main(null);
+//			CreateDB.main(null);
 			//end comment out at launch
 			
 		String phone1 = request.getParameter("phone1");
