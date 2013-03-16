@@ -47,12 +47,13 @@
 				//console.log(data);
 				var htmlstring = "";
 				var jsonlength = $.parseJSON(data).length;
-				console.log(jsonlength);
+				//console.log(jsonlength);
 				var parsedData = JSON.parse(data);
 				
 				for(var j = 0; j <jsonlength; j++){
-					console.log("loop");
-					//htmlstring += '<div class ="product"> Prodcut Name: ' + parsedData[j].name '<br>Product Price: $'+parsedData[j].price+'<br><button class = btn btn-success id ="'parsedData[j].id+'">Purchase!</button </div>';
+					//console.log("loop");
+					//console.log(parsedData[j].name);
+					htmlstring += '<div class ="product"> Product Name: ' + parsedData[j].name + '<br>Product Price: $'+parsedData[j].price+'<br><button class = "btn btn-success" id ="'+parsedData[j].id+'">Purchase!</button </div>';
 				}
 				$('#searchresults').html(htmlstring);
 			}).fail(function(data){

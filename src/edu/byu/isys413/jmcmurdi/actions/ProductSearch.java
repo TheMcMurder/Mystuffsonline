@@ -38,12 +38,46 @@ public class ProductSearch implements Action {
 		try{
 			//System.out.println(request.getParameter("store"));
 			Store s1 = BusinessObjectDAO.getInstance().read(request.getParameter("store"));
-			if(s1 == null){
-				System.out.println("Oh shit");
-			}
+			String searchtext = request.getParameter("text");
+			//System.out.println("Searchtext: " + searchtext);
 			
-			List<StoreProd> spList = BusinessObjectDAO.getInstance().searchForList("StoreProd", new SearchCriteria("id", s1.getId()));
-			List<PProduct> ppList = BusinessObjectDAO.getInstance().searchForList("PProduct", new SearchCriteria("id", s1.getId()));
+			
+//			List<StoreProd> spList = BusinessObjectDAO.getInstance().searchForList("StoreProd", new SearchCriteria("storeid", s1.getId()));
+//			List<PProduct> ppList = BusinessObjectDAO.getInstance().searchForList("PProduct", new SearchCriteria("storeid", s1.getId()));
+			List<StoreProd> spList = new LinkedList <StoreProd>();
+			List<PProduct> ppList = new LinkedList <PProduct>();
+			List<Product> prodList = BusinessObjectDAO.getInstance().searchForList("Product", new SearchCriteria("name", searchtext+"%", 6));
+			
+			for (Product p: prodList){
+				//System.out.println();
+				if(p.getProdType().equals("pproduct")){
+					PProduct temppprod = BusinessObjectDAO.getInstance().searchForBO("PProduct", new SearchCriteria("id", p.getId()), new SearchCriteria("storeid", s1.getId() ) );
+//					try{System.out.println("product: " + p.getId() + " " + p.getName() + " " + p.getProdType() + " " + temppprod.getId());}
+//					catch(Exception e){
+//						System.out.println("FAIL!");
+//					}
+					if( temppprod != null){
+						ppList.add(temppprod);
+					}
+				}else{
+					
+					
+					StoreProd tempsprod = BusinessObjectDAO.getInstance().searchForBO("StoreProd", new SearchCriteria("cprodid", p.getId()), new SearchCriteria("storeid", s1.getId() ) );
+//					try{System.out.println("product: " + p.getId() + " " + p.getName() + " " + p.getProdType() + " " + tempsprod.getId());}
+//					catch(Exception e){
+//						System.out.println("FAIL!");
+//					}
+					if(tempsprod != null){
+						spList.add(tempsprod);
+					}
+				}
+			}
+//				for (StoreProd s: spList){
+//				System.out.println("Store prod: " + s.getCprodid());
+//			}
+//			for (PProduct s: ppList){
+//				System.out.println("PProd: " + s.getId());
+//			}
 			
 			ArrayList<HashMap<String, String>> jsonthingy = new ArrayList<HashMap<String, String>>();
 			//to pu the storeprods (conceptual products) into the list
@@ -58,7 +92,7 @@ public class ProductSearch implements Action {
 			for(PProduct pp: ppList){
 				HashMap<String, String> tempHash = new HashMap<String, String>();
 				tempHash.put("price", pp.getProdPrice()+"");
-				tempHash.put("name", pp.getName() +"");
+				tempHash.put("name", pp.getPpname() +"");
 				tempHash.put("id", pp.getId() + "");
 				jsonthingy.add(tempHash);
 			}
