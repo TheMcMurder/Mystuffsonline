@@ -57,7 +57,7 @@
 				for(var j = 0; j <jsonlength; j++){
 					//console.log("loop");
 					//console.log(parsedData[j].name);
-					htmlstring += '<div class ="product"> Product Name: ' + parsedData[j].name + '<br>Product Price: $'+parsedData[j].price+'<br><button class = "btn btn-success" id ="'+parsedData[j].id+'">Purchase!</button </div>';
+					htmlstring += '<div class ="product"> Product Name: ' + parsedData[j].name + '<br>Product Price: $'+parsedData[j].price+'<br><button type = "button" class = "btn btn-success" id ="'+parsedData[j].id+'">Purchase!</button </div>';
 				}
 				$('#searchresults').html(htmlstring);
 			}).fail(function(data){
@@ -67,9 +67,9 @@
 			}
 		});
 		
-		$('body').delegate('.purchasebutton','click',function(){
+		$('body').delegate('.btn-success','click',function(){
 			var prodid = event.target.id;
-			// console.log(prodid);
+			console.log(prodid);
 			var hidden = '<input type "hidden" name = "prodid" value = '+prodid+'>';
 			hidden += '<input type"hidden" name= "storeid" value = "'+$('#storebox').val()+'">';
 			// console.log(hidden);

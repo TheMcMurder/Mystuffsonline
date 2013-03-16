@@ -36,7 +36,7 @@ public class CreateCustomer implements Action {
 			//TODO comment me out when you go live
 //			CreateDB.main(null);
 			//end comment out at launch
-			
+		Membership tempm = BusinessObjectDAO.getInstance().create(("Membership"));	
 		String phone1 = request.getParameter("phone1");
 		String phone2= request.getParameter("phone2");
 		String phone3= request.getParameter("phone3");
@@ -58,8 +58,11 @@ public class CreateCustomer implements Action {
 		c.setValidation(guid);
 		request.setAttribute("validationGUID", c.getValidation());
 		request.setAttribute("customer", "Customer Name: " +c.getFirstName() + " " + c.getLastName());
-		System.out.println("Customer Name: " +c.getFirstName() + " " + c.getLastName());
+		//System.out.println("Customer Name: " +c.getFirstName() + " " + c.getLastName());
+		tempm.setCustId(c.getId());
+		tempm.setCreditCard(request.getParameter("creditcard"));
 		c.save();
+		tempm.save();
 	} catch (Exception e){
 		System.out.println("failure");
 	}

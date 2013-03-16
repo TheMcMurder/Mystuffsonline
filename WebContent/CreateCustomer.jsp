@@ -17,10 +17,11 @@
 	<form method="post" id = "signupform" action="edu.byu.isys413.jmcmurdi.actions.CreateCustomer.action">
 	First Name:<input class="input-medium" type="text" size="15" name="firstname"><br>
 	Last Name:<input class="input-medium" type="text" size="20" name="lastname"><br>
+	Email Address:<input type="text" size="25" name="email"><br>
+	Credit Card: <input type="text" size = "25" name="creditcard"><br>
 	Phone Number: (<input class ="input-mini" type="text" maxlength ="3" size="3" name="phone1">)<input class ="input-mini" type="text" maxlength ="3" size = "3" name = "phone2">-<input class ="input-mini" type="text" maxlength ="4" size = "4" name = "phone3"><br>
 	Password:<input type="password" size="25" name="password" id = "password1"><br>
 	Confirm Password:<input type="password" size="25" name="confirmpassword" id = "password2"><br>
-	Email Address:<input type="text" size="25" name="email"><br>
 	Mailing Address:<input type="text" size="50" name="address"><br>
 	State: <select name="state">
 	

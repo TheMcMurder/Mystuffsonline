@@ -45,7 +45,7 @@ public class Login implements Action {
 		session.setAttribute("storelist", stores);
 		if(c != null){
 			if (c.getPassword().equals(password)){
-				//session.setAttribute("customer", c);
+				session.setAttribute("customer", c);
 				//Customer cust = (Customer)(session.getAttribute("customer"));
 				//System.out.println(cust.getFirstName());
 				if(c.isVerified() == true){
