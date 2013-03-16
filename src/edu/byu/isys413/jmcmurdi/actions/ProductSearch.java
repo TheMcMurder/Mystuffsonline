@@ -59,7 +59,7 @@ public class ProductSearch implements Action {
 					if( temppprod != null){
 						ppList.add(temppprod);
 					}
-				}else{
+				}else if(p.getProdType().equals("cproduct")){
 					
 					
 					StoreProd tempsprod = BusinessObjectDAO.getInstance().searchForBO("StoreProd", new SearchCriteria("cprodid", p.getId()), new SearchCriteria("storeid", s1.getId() ) );
