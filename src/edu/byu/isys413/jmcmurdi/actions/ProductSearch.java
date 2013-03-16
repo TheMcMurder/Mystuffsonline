@@ -57,7 +57,11 @@ public class ProductSearch implements Action {
 //						System.out.println("FAIL!");
 //					}
 					if( temppprod != null){
-						ppList.add(temppprod);
+						//System.out.println(temppprod.getId() + "");
+						if(temppprod.getStatus().equals("available")){
+							//System.out.println(temppprod.getStatus() + "");
+							ppList.add(temppprod);
+						}
 					}
 				}else if(p.getProdType().equals("cproduct")){
 					
@@ -68,7 +72,10 @@ public class ProductSearch implements Action {
 //						System.out.println("FAIL!");
 //					}
 					if(tempsprod != null){
-						spList.add(tempsprod);
+						if(tempsprod.getQuantityleft() > 0){
+							spList.add(tempsprod);
+						}
+						
 					}
 				}
 			}
