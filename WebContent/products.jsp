@@ -1,41 +1,45 @@
-<jsp:directive.page import="java.util.*"/> 
-<jsp:directive.page import="edu.byu.isys414.jmcmurdi.IntexII.*"/> 
-<jsp:directive.page import="edu.byu.isys413.jmcmurdi.web.*"/>
-<jsp:directive.page import = "javax.servlet.http.*"/>
+<jsp:directive.page import="java.util.*" />
+<jsp:directive.page import="edu.byu.isys414.jmcmurdi.IntexII.*" />
+<jsp:directive.page import="edu.byu.isys413.jmcmurdi.web.*" />
+<jsp:directive.page import="javax.servlet.http.*" />
 
 
 <jsp:include page="/header.jsp">
 	<jsp:param name="title" value="MyStuffsOnlineStore" />
 </jsp:include>
 <div class="container" width=60%>
-	
+
 	<div class="hero-unit">
-		<select id = "storebox">
-			<% LinkedList <Store> stores = new LinkedList <Store>(); %>
-			<% stores = (LinkedList)session.getAttribute("storelist"); %>
+		<select id="storebox">
+			<%
+				LinkedList <Store> stores = new LinkedList <Store>();
+			%>
+			<%
+				stores = (LinkedList)session.getAttribute("storelist");
+			%>
 			<%
 				for(Store s:stores){
-				out.println("<option value = " + s.getId() + " id = "+ s.getId() + ">" + s.getLocation() + "</option>");
-				//System.out.println("Store: " + s.getLocation());
-			}
-			
-			
+					out.println("<option value = " + s.getId() + " id = "+ s.getId() + ">" + s.getLocation() + "</option>");
+					//System.out.println("Store: " + s.getLocation());
+				}
 			%>
-			</select>
-		</select>
-		<input type="text" id="searchbox" class="input-medium search-query">
+		</select> </select> <input type="text" id="searchbox" class="input-medium search-query">
 		<button type="submit" class="btn">Search</button>
-	
-		<p></p>
 
-	<div id=searchresults><p>temporary holding place</p></div>
+		<p></p>
+		<form id ="purchase_form" type = "GET" action = "edu.byu.isys413.jmcmurdi.actions.Checkout.action">
+		<div id=searchresults>
+			<p></p>
+		</div>
+		</form>
 	</div>
 </div>
 
-<script type = "text/javascript">
+<script type="text/javascript">
 	$(function(){
 		$('#searchbox').keyup(function(){
 			var inputtext = $(this).val();
+			if(inputtext != ""){
 			var storeid = $('#storebox').val();
 			console.log(storeid);
 			$.ajax({
@@ -59,9 +63,24 @@
 			}).fail(function(data){
 				console.log('failure');
 			});
+			
+			}
+		});
 		
+		$('body').delegate('.purchasebutton','click',function(){
+			var prodid = event.target.id;
+			// console.log(prodid);
+			var hidden = '<input type "hidden" name = "prodid" value = '+prodid+'>';
+			hidden += '<input type"hidden" name= "storeid" value = "'+$('#storebox').val()+'">';
+			// console.log(hidden);
+			$('#searchresults').append(hidden);
+			$('#purchase_form').submit();
 		});
 		});
+	
+		
+		
+	
 	</script>
 
 
