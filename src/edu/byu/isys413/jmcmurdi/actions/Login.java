@@ -31,14 +31,16 @@ public class Login implements Action {
 		HttpSession session = request.getSession();
 
 		if (request.getParameter("ismobile") != null) {
-
+			System.out.println("point 1");
 			Gson gson = new Gson();
 			HashMap<String, String> lcred = new HashMap<String, String>();
 			String memail = (String) request.getParameter("username");
 			String mpassword = (String) request.getParameter("password");
+			System.out.println("point 2");
 			// System.out.println("Email recieved from android" + email);
 			// System.out.println("Password recieved from android" + password);
 			Customer mc = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", memail));
+			System.out.println("point 3");
 
 			if (mc != null) {
 				if (mc.getPassword().equals(mpassword)) {
@@ -47,65 +49,66 @@ public class Login implements Action {
 					// Customer cust = (Customer)(session.getAttribute("customer"));
 					// System.out.println(cust.getFirstName());
 					if (mc.isVerified() == true) {
-						lcred.put("custFName", mc.getFirstName());
-						lcred.put("custLName", mc.getLastName());
+						lcred.put("custFName", mc.getFirstName().toString());
+						lcred.put("custLName", mc.getLastName().toString());
 					}
 					// for (Store s: stores){
 					// System.out.println("Store: "+ s.getLocation());
 					// }
 
-					// String test = "mcmurdiej@gmail.com";
-					// if (memail.equals(test)) {
-					// lcred.put("status", "like a sir");
-					// // System.out.println("success");
-					// } else {
-					// lcred.put("status", "poopy");
-					// // System.out.println("updated failure 3");
-					// // System.out.println("Email: " + email);
-					// // System.out.println("Password: " +password);
-					// // System.out.println("Email: " + email.length());
-					// // System.out.println("test: " + test.length());
-				}
-				String json = gson.toJson(lcred);
-				request.setAttribute("mobiledata", json);
-
-				return "/mobileReturn.jsp";
-			}
-		} else {
-
-			String email = (String) request.getParameter("inputEmail");
-			String password = (String) request.getParameter("inputPassword");
-			// System.out.println("Email: " + email + " password: " + password);
-			Customer c = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", email));
-			LinkedList<Store> stores = new LinkedList<Store>();
-			stores = (LinkedList) BusinessObjectDAO.getInstance().searchForAll("Store");
-			// for (Store s: stores){
-			// System.out.println("Store: "+ s.getLocation());
-			// }
-			session.setAttribute("storelist", stores);
-			if (c != null) {
-				if (c.getPassword().equals(password)) {
-					session.setAttribute("customer", c);
-					// Customer cust = (Customer)(session.getAttribute("customer"));
-					// System.out.println(cust.getFirstName());
-					if (c.isVerified() == true) {
-						return "/products.jsp";
+					String test = "mcmurdiej@gmail.com";
+					if (memail.equals(test)) {
+						lcred.put("status", "like a sir");
+						// System.out.println("success");
+					} else {
+						lcred.put("status", "poopy");
+						// // System.out.println("updated failure 3");
+						// // System.out.println("Email: " + email);
+						// // System.out.println("Password: " +password);
+						// // System.out.println("Email: " + email.length());
+						// // System.out.println("test: " + test.length());
 					}
-					request.setAttribute("message", "incorrect username or password");
-					return "/Login.jsp";
+					String json = gson.toJson(lcred);
+					request.setAttribute("mobiledata", json);
+
+					return "/mobileReturn.jsp";
+				}
+			} else {
+
+				String email = (String) request.getParameter("inputEmail");
+				String password = (String) request.getParameter("inputPassword");
+				// System.out.println("Email: " + email + " password: " + password);
+				Customer c = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", email));
+				LinkedList<Store> stores = new LinkedList<Store>();
+				stores = (LinkedList) BusinessObjectDAO.getInstance().searchForAll("Store");
+				// for (Store s: stores){
+				// System.out.println("Store: "+ s.getLocation());
+				// }
+				session.setAttribute("storelist", stores);
+				if (c != null) {
+					if (c.getPassword().equals(password)) {
+						session.setAttribute("customer", c);
+						// Customer cust = (Customer)(session.getAttribute("customer"));
+						// System.out.println(cust.getFirstName());
+						if (c.isVerified() == true) {
+							return "/products.jsp";
+						}
+						request.setAttribute("message", "incorrect username or password");
+						return "/Login.jsp";
+					} else {
+						request.setAttribute("message", "incorrect username or password");
+						return "/Login.jsp";
+					}
+
 				} else {
 					request.setAttribute("message", "incorrect username or password");
 					return "/Login.jsp";
 				}
 
-			} else {
-				request.setAttribute("message", "incorrect username or password");
-				return "/Login.jsp";
 			}
-
+			request.setAttribute("message", "incorrect username or password");
+			return "/Login.jsp";
 		}
-		request.setAttribute("message", "incorrect username or password");
 		return "/Login.jsp";
 	}
-
 }
