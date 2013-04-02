@@ -11,37 +11,37 @@
 		out.println("</p>");
 	}//if
 %>
-<div class='container' style = "width:600px";>
-	<div class='hero-unit'>
-		<form class='form-horizontal' method="post" id="signupform"
+<div class="container" style = "width:600px";>
+	<div class="hero-unit">
+		<form class="form-horizontal" method="post" id="signupform"
 			action="edu.byu.isys413.jmcmurdi.actions.CreateCustomer.action">
 			<div class="control-group">
-				<label class='control-label'for 'firstname'>First Name:</label>
-				<div class='controls'>
+				<label class="control-label"for "firstname">First Name:</label>
+				<div class="controls">
 					<input class="input-large" type="text" size="15" name="firstname">
 				</div>
 			</div>
 			<div class="control-group">
-				<label class='control-label'for 'lastname'>Last Name:</label>
-				<div class='controls'>
+				<label class="control-label"for "lastname">Last Name:</label>
+				<div class="controls">
 					<input class="input-large" type="text" size="15" name="lastname">
 				</div>
 			</div>
 			<div class="control-group">
-				<label class='control-label'for 'email'>Email:</label>
-				<div class='controls'>
+				<label class="control-label"for "email">Email:</label>
+				<div class="controls">
 					<input class="input-large" type="text" size="25" name="email">
 				</div>
 			</div>
 			<div class="control-group">
-				<label class='control-label'for 'creditcard'>Credit Card:</label>
-				<div class='controls'>
+				<label class="control-label"for "creditcard">Credit Card:</label>
+				<div class="controls">
 					<input class="input-large" type="text" size="25" name="creditcard">
 				</div>
 			</div>
 			<div class="control-group">
-				<label class='control-label'for 'phonenumber'>Phone:</label>
-				<div class='controls'>
+				<label class="control-label"for "phonenumber">Phone:</label>
+				<div class="controls">
 					( <input class="input-mini" type="text" maxlength="3" size="3"
 						name="phone1"> ) <input class="input-mini" type="text"
 						maxlength="3" size="3" name="phone2"> - <input
@@ -50,28 +50,28 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label class='control-label'for 'password1'>Password:</label>
-				<div class='controls'>
-					<input class="input-large" type="text" size="25" name="password1" id = 'password1'>
+				<label class="control-label"for "password1">Password:</label>
+				<div class="controls">
+					<input class="input-large" type="text" size="25" name="password1" id = "password1"">
 				</div>
 			</div>
 			<div class="control-group">
-				<label class='control-label'for 'password2'>Confirm
+				<label class="control-label"for "password2">Confirm
 					Password:</label>
-				<div class='controls'>
+				<div class="controls">
 					<input class="input-large" type="password" size="25" name="confirmpassword"
 						id="password2">
 				</div>
 			</div>
 			<div class="control-group">
-				<label class='control-label'for 'address'>Address:</label>
-				<div class='controls'>
+				<label class="control-label"for "address">Address:</label>
+				<div class="controls">
 					<input class="input-large" type="text" size="50" name="address">
 				</div>
 			</div>
 			<div class="control-group">
-				<label class='control-label'for 'state'>State:</label>
-				<div class='controls'>
+				<label class="control-label"for "state">State:</label>
+				<div class="controls">
 					<select name="state">
 
 				<option value="Alabama">Alabama</option>
@@ -129,11 +129,11 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label class='control-label'for 'zip'>Zip Code:</label>
-				<div class='controls'>
+				<label class="control-label"for "zip">Zip Code:</label>
+				<div class="controls">
 					<input
 				type="submit" id="submit" name="mysubmitter" value="Create Account"
-				class="btn btn-success" disabled="disabled">
+				class="btn btn-success">
 				</div>
 			</div>
 			
@@ -141,27 +141,28 @@
 		</form>
 		<!-- <button type="button" class="btn btn-success">Success</button> -->
 	</div>
-	<script>
+	<!-- <script>
+	
 		$(function() {
 			$("#password2").focusout(function() {
 				var password1 = $("#password1").val();
 				var password2 = $("#password2").val();
-				//alert("password1: " + password1 + " password2: " + password2);
+				alert("password1: " + password1 + " password2: " + password2);
 				if (password1 == "") {
-					//alert("Made it to the empty password field check");
-					//$('#'+div_id+' .widget-head sp#spTitle').text("new dialog title");
+					alert("Made it to the empty password field check");
+					//$("#"+div_id+" .widget-head sp#spTitle").text("new dialog title");
 					//$("div#brieftext").text($(this).attr("data-text"));
 					//$("#error").text($(this).attr("data-text"));
-					$("#submit").prop('disabled', 'disabled');
+					$("#submit").prop("disabled", "disabled");
 
 				} else if (password1 != password2) {
-					//alert("Passwords must match");
+					alert("Passwords must match");
 					//$("#error" + ".widget-head sp#spanerror").text("passwords must match");
 					//$("#error").text($(this).attr("data-text"));
-					$("#submit").prop('disabled', 'disabled');
+					$("#submit").prop("disabled", "disabled");
 
 				} else if (password1 == password2) {
-					//alert("passwords match")
+					alert("passwords match")
 					$("#submit").removeAttr("disabled");
 				}
 
@@ -176,16 +177,16 @@
 				//alert("password1: " + password1 + " password2: " + password2);
 				if (password1 == "") {
 					//alert("Made it to the empty password field check");
-					//$('#'+div_id+' .widget-head sp#spTitle').text("new dialog title");
+					//$("#"+div_id+" .widget-head sp#spTitle").text("new dialog title");
 					//$("div#brieftext").text($(this).attr("data-text"));
 					//$("#error").text($(this).attr("data-text"));
-					$("#submit").prop('disabled', 'disabled');
+					$("#submit").prop("disabled", "disabled");
 
 				} else if (password1 != password2) {
 					//alert("Passwords must match");
 					//$("#error" + ".widget-head sp#spanerror").text("passwords must match");
 					//$("#error").text($(this).attr("data-text"));
-					$("#submit").prop('disabled', 'disabled');
+					$("#submit").prop("disabled", "disabled");
 
 				} else if (password1 == password2) {
 					//alert("passwords match")
@@ -194,7 +195,7 @@
 			})
 
 		})
-	</script>
+	</script> -->
 </div>
 </div>
 </div>

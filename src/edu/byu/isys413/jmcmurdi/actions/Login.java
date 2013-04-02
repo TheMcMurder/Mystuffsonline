@@ -29,7 +29,7 @@ public class Login implements Action {
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// ensure we have a number to guess for
 		HttpSession session = request.getSession();
-
+		System.out.println("This should print1");
 		if (request.getParameter("ismobile") != null) {
 			System.out.println("point 1");
 			Gson gson = new Gson();
@@ -41,8 +41,9 @@ public class Login implements Action {
 			// System.out.println("Password recieved from android" + password);
 			Customer mc = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", memail));
 			System.out.println("point 3");
-
+			System.out.println("This should print1");
 			if (mc != null) {
+				System.out.println("This should print2");
 				if (mc.getPassword().equals(mpassword)) {
 					// session.setAttribute("customer", mc);
 
@@ -51,10 +52,10 @@ public class Login implements Action {
 					if (mc.isVerified() == true) {
 						lcred.put("custFName", mc.getFirstName().toString());
 						lcred.put("custLName", mc.getLastName().toString());
-					}
-					// for (Store s: stores){
-					// System.out.println("Store: "+ s.getLocation());
-					// }
+					} // if msisverified();
+						// for (Store s: stores){
+						// System.out.println("Store: "+ s.getLocation());
+						// }
 
 					String test = "mcmurdiej@gmail.com";
 					if (memail.equals(test)) {
@@ -67,48 +68,50 @@ public class Login implements Action {
 						// // System.out.println("Password: " +password);
 						// // System.out.println("Email: " + email.length());
 						// // System.out.println("test: " + test.length());
-					}
+					} // if mc email matches test string
 					String json = gson.toJson(lcred);
 					request.setAttribute("mobiledata", json);
 
 					return "/mobileReturn.jsp";
 				}
-			} else {
-
-				String email = (String) request.getParameter("inputEmail");
-				String password = (String) request.getParameter("inputPassword");
-				// System.out.println("Email: " + email + " password: " + password);
-				Customer c = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", email));
-				LinkedList<Store> stores = new LinkedList<Store>();
-				stores = (LinkedList) BusinessObjectDAO.getInstance().searchForAll("Store");
-				// for (Store s: stores){
-				// System.out.println("Store: "+ s.getLocation());
-				// }
-				session.setAttribute("storelist", stores);
-				if (c != null) {
-					if (c.getPassword().equals(password)) {
-						session.setAttribute("customer", c);
-						// Customer cust = (Customer)(session.getAttribute("customer"));
-						// System.out.println(cust.getFirstName());
-						if (c.isVerified() == true) {
-							return "/products.jsp";
-						}
-						request.setAttribute("message", "incorrect username or password");
-						return "/Login.jsp";
-					} else {
-						request.setAttribute("message", "incorrect username or password");
-						return "/Login.jsp";
+			}
+		} else {
+			System.out.println("This should print3");
+			String email = (String) request.getParameter("inputEmail");
+			String password = (String) request.getParameter("inputPassword");
+			System.out.println("Email: " + email + " password: " + password);
+			Customer c = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", email));
+			LinkedList<Store> stores = new LinkedList<Store>();
+			stores = (LinkedList) BusinessObjectDAO.getInstance().searchForAll("Store");
+			for (Store s : stores) {
+				System.out.println("Store: " + s.getLocation());
+			}
+			session.setAttribute("storelist", stores);
+			if (c != null) {
+				if (c.getPassword().equals(password)) {
+					session.setAttribute("customer", c);
+					session.setAttribute("user", c.getFirstName());
+					Customer cust = (Customer) (session.getAttribute("customer"));
+					System.out.println(cust.getFirstName());
+					if (c.isVerified() == true) {
+						return "/products.jsp";
 					}
-
+					request.setAttribute("message", "incorrect username or password");
+					return "/Login.jsp";
 				} else {
 					request.setAttribute("message", "incorrect username or password");
 					return "/Login.jsp";
 				}
 
+			} else {
+				request.setAttribute("message", "incorrect username or password");
+				return "/Login.jsp";
 			}
-			request.setAttribute("message", "incorrect username or password");
-			return "/Login.jsp";
+
 		}
+		request.setAttribute("message", "incorrect username or password");
 		return "/Login.jsp";
+
 	}
+
 }
