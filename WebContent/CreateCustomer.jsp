@@ -133,7 +133,7 @@
 				<div class="controls">
 					<input
 				type="submit" id="submit" name="mysubmitter" value="Create Account"
-				class="btn btn-success">
+				class="btn btn-success"  disabled="disabled">
 				</div>
 			</div>
 			
@@ -141,34 +141,35 @@
 		</form>
 		<!-- <button type="button" class="btn btn-success">Success</button> -->
 	</div>
-	<!-- <script>
+	<script>
 	
 		$(function() {
 			$("#password2").focusout(function() {
 				var password1 = $("#password1").val();
 				var password2 = $("#password2").val();
-				alert("password1: " + password1 + " password2: " + password2);
+				//alert("password1: " + password1 + " password2: " + password2);
 				if (password1 == "") {
-					alert("Made it to the empty password field check");
+					//alert("Made it to the empty password field check");
 					//$("#"+div_id+" .widget-head sp#spTitle").text("new dialog title");
 					//$("div#brieftext").text($(this).attr("data-text"));
 					//$("#error").text($(this).attr("data-text"));
 					$("#submit").prop("disabled", "disabled");
 
 				} else if (password1 != password2) {
-					alert("Passwords must match");
+					//alert("Passwords must match");
 					//$("#error" + ".widget-head sp#spanerror").text("passwords must match");
 					//$("#error").text($(this).attr("data-text"));
 					$("#submit").prop("disabled", "disabled");
 
 				} else if (password1 == password2) {
-					alert("passwords match")
+					//alert("passwords match")
 					$("#submit").removeAttr("disabled");
-				}
+				} 
 
 			})
 		});
 	</script>
+	
 	<script>
 		$(function() {
 			$("#password1").focusout(function() {
@@ -194,8 +195,8 @@
 				}
 			})
 
-		})
-	</script> -->
+		});
+	</script>
 </div>
 </div>
 </div>
