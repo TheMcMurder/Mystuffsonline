@@ -9,6 +9,7 @@
     <!-- Le styles -->
     <link href="files/docs/assets/css/bootstrap.css" rel="stylesheet">
     <link href="files/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- <link rel="icon" href="files/docs/assets/ico/favicon.ico"> -->
     <style>
 
     /* GLOBAL STYLES
