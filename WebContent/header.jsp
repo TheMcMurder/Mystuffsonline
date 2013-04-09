@@ -264,6 +264,8 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="files/docs/assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="files/docs/assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="files/docs/assets/ico/favicon.png">
+                                   <script src="http://code.jquery.com/jquery-latest.min.js"
+        type="text/javascript"></script>    
   </head>
 
   <body>
@@ -288,16 +290,6 @@
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
               <ul class="nav" style="float:none">
-               <li class="dropdown">
-                      <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="http://google.com">Action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#anotherAction">Another action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                      </ul>
-                    </li>
                 <li><a href="/products.jsp">Shop</a></li>
                 <!--  <li><a href="#contact">About</a></li>-->
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
@@ -306,7 +298,7 @@
                   <ul class="dropdown-menu">
                     <li><a href="index.jsp">Company</a></li>
                     <li><a href="index.jsp">Store</a></li>
-                    <li><a href="shop.jsp">Products</a></li>
+                    <li><a href="#">Products</a></li>
                   </ul>
                 </li>
                 <%if(session.getAttribute("user") != null){%>
@@ -314,7 +306,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=session.getAttribute("user")%>'s Account<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     <li><a href="#">Customer Info</a></li>
-                    <li><a href="edu.byu.isys413.bretm23.actions.logout.action">Logout</a></li>
+                    <li><a href="edu.byu.isys413.jmcmurdi.actions.Logout.action">Logout</a></li>
                     </ul>
                     </li>
                    <%}else{%> 

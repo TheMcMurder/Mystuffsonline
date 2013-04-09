@@ -33,7 +33,7 @@ public class Login implements Action {
 		if (request.getParameter("ismobile") != null) {
 			System.out.println("point 1");
 			Gson gson = new Gson();
-			HashMap<String, String> lcred = new HashMap<String, String>();
+			HashMap<String, String> jHashmap = new HashMap<String, String>();
 			String memail = (String) request.getParameter("username");
 			String mpassword = (String) request.getParameter("password");
 			System.out.println("point 2");
@@ -50,8 +50,30 @@ public class Login implements Action {
 					// Customer cust = (Customer)(session.getAttribute("customer"));
 					// System.out.println(cust.getFirstName());
 					if (mc.isVerified() == true) {
-						lcred.put("custFName", mc.getFirstName().toString());
-						lcred.put("custLName", mc.getLastName().toString());
+						System.out.println("Customer is verified and such");
+						jHashmap.put("custFName", mc.getFirstName().toString());
+						jHashmap.put("custLName", mc.getLastName().toString());
+						jHashmap.put("custid", mc.getId().toString());
+						ArrayList<HashMap<String, String>> picList = new ArrayList<HashMap<String, String>>();
+						List templist = BusinessObjectDAO.getInstance().searchForList("picture", new SearchCriteria("custid", mc.getId()));	
+//						for(Object bo: templist){
+//							HashMap<String,String> singlePic = new HashMap <String, String>();
+//							Picture temppic = (Picture) bo;
+//							singlePic.put("id", temppic.getId());
+//							singlePic.put("caption", temppic.getCaption());
+//							singlePic.put("picname", temppic.getPicname());
+//							//singlePic.put("pic", temppic.getPic());
+//							
+//							//Add temp hashmap to arraylist
+//							picList.add(singlePic);
+//							
+//						}
+//						String tempjson = gson.toJson(picList);
+//
+//						jHashmap.put("piclist", tempjson);
+						
+						//String picJson = 
+					
 					} // if msisverified();
 						// for (Store s: stores){
 						// System.out.println("Store: "+ s.getLocation());
@@ -59,17 +81,17 @@ public class Login implements Action {
 
 					String test = "mcmurdiej@gmail.com";
 					if (memail.equals(test)) {
-						lcred.put("status", "like a sir");
+						jHashmap.put("status", "like a sir");
 						// System.out.println("success");
 					} else {
-						lcred.put("status", "poopy");
+						jHashmap.put("status", "poopy");
 						// // System.out.println("updated failure 3");
 						// // System.out.println("Email: " + email);
 						// // System.out.println("Password: " +password);
 						// // System.out.println("Email: " + email.length());
 						// // System.out.println("test: " + test.length());
 					} // if mc email matches test string
-					String json = gson.toJson(lcred);
+					String json = gson.toJson(jHashmap);
 					request.setAttribute("mobiledata", json);
 
 					return "/mobileReturn.jsp";

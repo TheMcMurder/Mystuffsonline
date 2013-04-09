@@ -5,9 +5,9 @@ import java.util.*;
 import edu.byu.isys413.jmcmurdi.web.*;
 import edu.byu.isys414.jmcmurdi.IntexII.*;
 
-public class MakeMoney implements Action {
+public class Logout implements Action {
 	/** Constructor */
-	public MakeMoney() {
+	public Logout() {
 		// no op
 	}
 
@@ -32,14 +32,10 @@ public class MakeMoney implements Action {
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// ensure we have a number to guess for
 		HttpSession session = request.getSession();
-		Product p = (Product) request.getAttribute("product");
-		Store s = (Store) request.getAttribute("store");
-		Customer c = (Customer) session.getAttribute("customer");
-		Membership m = (Membership) request.getAttribute("membership");
 		
-		//TODO save transaction object with all the datas
+		session.invalidate();
 		
-	return "index.jsp";
+		return "/index.jsp";
+
 	}
-	
 }
