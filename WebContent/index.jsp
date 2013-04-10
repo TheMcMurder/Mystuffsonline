@@ -23,7 +23,7 @@
 				<div class="carousel-caption">
 					<h1>New Product Weekly</h1>
 					<p class="lead">Check our newly listed products.  We guarantee the highest quality and the lowest prices</p>
-					<a class="btn btn-large btn-primary" href="shop.jsp">Shop Now</a>
+					<a class="btn btn-large btn-primary" href="/Login.jsp">Shop Now</a>
 				</div>
 			</div>
 		</div>

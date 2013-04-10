@@ -30,7 +30,7 @@ public class Checkout implements Action {
 	 *          relative to the current page (dangerous!).
 	 */
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// ensure we have a number to guess for
+		
 		HttpSession session = request.getSession();
 		String storeid = request.getParameter("storeid");
 		String prodid = request.getParameter("prodid");

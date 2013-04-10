@@ -98,7 +98,7 @@ public class Login implements Action {
 				}
 			}
 		} else {
-			System.out.println("This should print3");
+			//System.out.println("This should print3");
 			String email = (String) request.getParameter("inputEmail");
 			String password = (String) request.getParameter("inputPassword");
 			System.out.println("Email: " + email + " password: " + password);

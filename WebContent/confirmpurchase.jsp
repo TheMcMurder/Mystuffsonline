@@ -20,14 +20,24 @@
 	Membership m = BusinessObjectDAO.getInstance().searchForBO("membership", new SearchCriteria("custid", c.getId()) );
 	Double tax = s.getSalestaxrate() * p.getProdPrice();
 	
-	request.setAttribute("product", p);
-	request.setAttribute("store", s);
-	request.setAttribute("membership", m);
+	//request.setAttribute("fproduct", p.getId());
+	//request.setAttribute("fstore", s.getId());
+	//request.setAttribute("fmembership", m.getId());
+	
+	System.out.println("Product id from confirm page " + p.getId());
+	System.out.println("Store id from confirm page " + s.getId());
+
+	System.out.println("Customer id from confirm page " + c.getId());
+
+	System.out.println("member id from confirm page " + m.getId());
+
 
 %>
 <div class="container" style = "width:600px";>
 	<div class = "hero-unit">
 		<form class = "form-horizontal" method="post" id="finalize"	action="edu.byu.isys413.jmcmurdi.actions.MakeMoney.action">
+			
+			
 			<div class = "control-group">
 				<label class = "control-label" for "cfrmshipping">Confirm Address:</label>
 				<div class = "controls">
@@ -64,7 +74,16 @@
 				class="btn btn-success">
 				</div>
 			</div>
-			
+			<div class = "control-group" style = "visibility:hidden;">
+				<div class = "controls">
+					<input class="input-medium" type="text"	size="15" name="prodid" id = "prodid" value=<%out.print(p.getId());%>>
+				</div>
+			</div>
+			<div class = "control-group" style = "visibility:hidden;">
+				<div class = "controls">
+					<input class="input-medium" type="text"	size="15" name="storeid" id = "storeid" value=<%out.print(s.getId());%>>
+				</div>
+			</div>
 			
 			
 		</form>
