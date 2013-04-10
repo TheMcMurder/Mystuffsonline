@@ -25,18 +25,52 @@
 	request.setAttribute("membership", m);
 
 %>
-
-	<form method="post" id = "finalize" action="edu.byu.isys413.jmcmurdi.actions.MakeMoney.action">
-	Confirm Shipping address:<input class="input-medium" type="text" size="15" name="address" value = <%out.print(c.getAddress());%>><br>
-	Confirm Credit Card:<input class="input-medium" type="text" size="20" name="creditcard" value = <%out.print(m.getCreditCard()); %>><br>	
-	Product Price: <%out.println(p.getProdPrice()); %><br>
-	Tax: <%out.print(tax) ;%>
-	Total Cost: <%out.print(p.getProdPrice() + tax);%>
-	
-    <input type="submit" id = "submit" name="mysubmitter" value="Checkout" class="btn btn-success">
-	</form> 
-	<!-- <button type="button" class="btn btn-success">Success</button> -->
-	
+<div class="container" style = "width:600px";>
+	<div class = "hero-unit">
+		<form class = "form-horizontal" method="post" id="finalize"	action="edu.byu.isys413.jmcmurdi.actions.MakeMoney.action">
+			<div class = "control-group">
+				<label class = "control-label" for "cfrmshipping">Confirm Address:</label>
+				<div class = "controls">
+					<input class="input-medium" type="text"	size="15" name="address" value=<%out.print(c.getAddress());%>>
+				</div>
+			</div>
+			<div class = "control-group">
+				<label class = "control-label" for "cnfrmcc">Confirm Credit Card:</label>
+				<div class = "controls">
+					<input class="input-medium" type="text" size="20" name="creditcard" value=<%out.print(m.getCreditCard());%>>
+				</div>
+			</div>
+			<div class = "control-group">
+				<label class = "control-label" for "prodprice">Product Price:</label>
+				<div class = "controls">
+					<% out.println(p.getProdPrice());%>
+				</div>
+			</div>
+			<div class = "control-group">
+				<label class = "control-label" for "tax">Tax:</label>
+				<div class = "controls">
+					<%	out.print(tax);	%>
+				</div>
+			</div>
+			<div class = "control-group">
+				<label class = "control-label" for "Total">Total:</label>
+				<div class = "controls">
+					<% out.print(p.getProdPrice() + tax);%>
+				</div>
+			</div>
+			<div class = "control-group">
+				<div class = "controls">
+					<input type="submit" id="submit" name="mysubmitter" value="Checkout"
+				class="btn btn-success">
+				</div>
+			</div>
+			
+			
+			
+		</form>
+		<!-- <button type="button" class="btn btn-success">Success</button> -->
+	</div>
+</div>
 
 
 
