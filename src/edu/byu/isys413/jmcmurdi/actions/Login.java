@@ -55,22 +55,22 @@ public class Login implements Action {
 						jHashmap.put("custLName", mc.getLastName().toString());
 						jHashmap.put("custid", mc.getId().toString());
 						ArrayList<HashMap<String, String>> picList = new ArrayList<HashMap<String, String>>();
-						List templist = BusinessObjectDAO.getInstance().searchForList("picture", new SearchCriteria("custid", mc.getId()));	
-//						for(Object bo: templist){
-//							HashMap<String,String> singlePic = new HashMap <String, String>();
-//							Picture temppic = (Picture) bo;
-//							singlePic.put("id", temppic.getId());
-//							singlePic.put("caption", temppic.getCaption());
-//							singlePic.put("picname", temppic.getPicname());
-//							//singlePic.put("pic", temppic.getPic());
-//							
-//							//Add temp hashmap to arraylist
-//							picList.add(singlePic);
-//							
-//						}
-//						String tempjson = gson.toJson(picList);
-//
-//						jHashmap.put("piclist", tempjson);
+						List templist = BusinessObjectDAO.getInstance().searchForList("Picture", new SearchCriteria("custid", mc.getId()));	
+						for(Object bo: templist){
+							HashMap<String,String> singlePic = new HashMap <String, String>();
+							Picture temppic = (Picture) bo;
+							singlePic.put("id", temppic.getId());
+							singlePic.put("caption", temppic.getCaption());
+							singlePic.put("picname", temppic.getPicname());
+							//singlePic.put("pic", temppic.getPic());
+							
+							//Add temp hashmap to arraylist
+							picList.add(singlePic);
+							
+						}
+						String tempjson = gson.toJson(picList);
+
+						jHashmap.put("piclist", tempjson);
 						
 						//String picJson = 
 					
