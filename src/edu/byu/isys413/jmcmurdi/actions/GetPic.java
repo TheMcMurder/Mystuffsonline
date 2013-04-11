@@ -37,15 +37,29 @@ public class GetPic implements Action {
 			HttpServletResponse response) throws Exception {
 
 		if (request.getParameter("ismobile") != null) {
-			// System.out.println("point 1");
+			
+			String captionname = (String) request.getParameter("captiontext");
+			String ePic = null;
+			HashMap<String, String> jHashmap = new HashMap<String, String>();
+			
 			Gson gson = new Gson();
 			
+			if(captionname != null){
+				Picture temppic = BusinessObjectDAO.getInstance().searchForBO("Picture", new SearchCriteria("caption", captionname));
+				ePic = temppic.getPic();
+				
+			}
+			jHashmap.put("status", "success");
+			jHashmap.put("ePic", ePic);
+			String json = gson.toJson(jHashmap);
 			
-			return "/mobileReturn.jsp";
+			request.setAttribute("mobilePicdata", json);
+			
+			return "/picReturn.jsp";
 			
 		} else {
 			
-			return "/confirmpurchase.jsp";
+			return null;
 		}
 
 	}

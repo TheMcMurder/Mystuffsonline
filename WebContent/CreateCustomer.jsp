@@ -52,7 +52,7 @@
 			<div class="control-group">
 				<label class="control-label"for "password1">Password:</label>
 				<div class="controls">
-					<input class="input-large" type="text" size="25" name="password1" id = "password1"">
+					<input class="input-large" type="password" size="25" name="password1" id = "password1"">
 				</div>
 			</div>
 			<div class="control-group">
