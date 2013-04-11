@@ -291,7 +291,11 @@
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
               <ul class="nav" style="float:none">
-                <li><a href="/products.jsp">Shop</a></li>
+              <%if (session.getAttribute("user") != null) { %>
+                <li><a href="products.jsp">Shop</a></li>
+                <%} else { %>
+                <li><a href="Login.jsp">Shop</a></li>
+                <% } %>
                 <!--  <li><a href="#contact">About</a></li>-->
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <li class="dropdown">

@@ -14,19 +14,20 @@
   <jsp:param name="title" value="Error" />
 </jsp:include>
 
-This is an example error page.  If you look at web.xml, you'll see that
-edu.byu.isys413.web.WebException is mapped to /error.jsp.  This tells
-Tomcat to call /error.jsp automatically whenever a WebException is 
-thrown.  
+<div class="container" style = "width:600px";>
+	<div class="hero-unit">
+<h1>OH SNAP!!!</h1>
 <p>
-Effectively, you can <tt>throw new WebException("Error")</tt> whenever
-you want to show the error page.
+Something terribly wrong occurred... We're sending a team of ant-sized squirrels, if you see them tell them to check the Tachyon particle field for errors in the constriant matrix.
 <p>
-You obviously should replace the text of this page with something
-nicer for your clients to see.
+In the meantime relax and try again.  We're here to help you can always call us at (801)-555-5555
 <p>
-The error was as follows:
+An error code just for good measure:
 <p>
+</p>
+</div>
+</div>
+
 
 <div style="color:#FF0000" align="center">
     <%=exc.getMessage()%>

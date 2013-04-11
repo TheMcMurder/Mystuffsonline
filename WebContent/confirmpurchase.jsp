@@ -59,7 +59,7 @@
 			<div class = "control-group">
 				<label class = "control-label" for "tax">Tax:</label>
 				<div class = "controls">
-					<%	out.print(tax);	%>
+					<%out.print(tax);	%>
 				</div>
 			</div>
 			<div class = "control-group">
@@ -82,6 +82,16 @@
 			<div class = "control-group" style = "visibility:hidden;">
 				<div class = "controls">
 					<input class="input-medium" type="text"	size="15" name="storeid" id = "storeid" value=<%out.print(s.getId());%>>
+				</div>
+			</div>
+			<div class = "control-group" style = "visibility:hidden;">
+				<div class = "controls">
+					<input class="input-medium" type="text"	size="15" name="tax" id = "tax" value=<%out.print(tax);%>>
+				</div>
+			</div>
+			<div class = "control-group" style = "visibility:hidden;">
+				<div class = "controls">
+					<input class="input-medium" type="text"	size="15" name="total" id = "total" value=<%out.print(p.getProdPrice() + tax);%>>
 				</div>
 			</div>
 			

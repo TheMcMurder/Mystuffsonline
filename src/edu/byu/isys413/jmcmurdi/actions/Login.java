@@ -29,28 +29,28 @@ public class Login implements Action {
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// ensure we have a number to guess for
 		HttpSession session = request.getSession();
-		System.out.println("This should print1");
+		//System.out.println("This should print1");
 		if (request.getParameter("ismobile") != null) {
-			System.out.println("point 1");
+			//System.out.println("point 1");
 			Gson gson = new Gson();
 			HashMap<String, String> jHashmap = new HashMap<String, String>();
 			String memail = (String) request.getParameter("username");
 			String mpassword = (String) request.getParameter("password");
-			System.out.println("point 2");
+			//System.out.println("point 2");
 			// System.out.println("Email recieved from android" + email);
 			// System.out.println("Password recieved from android" + password);
 			Customer mc = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", memail));
-			System.out.println("point 3");
-			System.out.println("This should print1");
+			//System.out.println("point 3");
+			//System.out.println("This should print1");
 			if (mc != null) {
-				System.out.println("This should print2");
+				//System.out.println("This should print2");
 				if (mc.getPassword().equals(mpassword)) {
 					// session.setAttribute("customer", mc);
 
 					// Customer cust = (Customer)(session.getAttribute("customer"));
 					// System.out.println(cust.getFirstName());
 					if (mc.isVerified() == true) {
-						System.out.println("Customer is verified and such");
+						//System.out.println("Customer is verified and such");
 						jHashmap.put("custFName", mc.getFirstName().toString());
 						jHashmap.put("custLName", mc.getLastName().toString());
 						jHashmap.put("custid", mc.getId().toString());
@@ -101,12 +101,12 @@ public class Login implements Action {
 			//System.out.println("This should print3");
 			String email = (String) request.getParameter("inputEmail");
 			String password = (String) request.getParameter("inputPassword");
-			System.out.println("Email: " + email + " password: " + password);
+			//System.out.println("Email: " + email + " password: " + password);
 			Customer c = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", email));
 			LinkedList<Store> stores = new LinkedList<Store>();
 			stores = (LinkedList) BusinessObjectDAO.getInstance().searchForAll("Store");
 			for (Store s : stores) {
-				System.out.println("Store: " + s.getLocation());
+				//System.out.println("Store: " + s.getLocation());
 			}
 			session.setAttribute("storelist", stores);
 			if (c != null) {
@@ -114,7 +114,7 @@ public class Login implements Action {
 					session.setAttribute("customer", c);
 					session.setAttribute("user", c.getFirstName());
 					Customer cust = (Customer) (session.getAttribute("customer"));
-					System.out.println(cust.getFirstName());
+					//System.out.println(cust.getFirstName());
 					if (c.isVerified() == true) {
 						return "/products.jsp";
 					}
