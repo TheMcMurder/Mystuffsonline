@@ -38,20 +38,20 @@ public class Postimage implements Action {
 	 */
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// ensure we have a number to guess for
-		System.out.println("PostImage Started");
+		//System.out.println("PostImage Started");
 		HttpSession session = request.getSession();
 		if (request.getParameter("ismobile") != null) {
-			System.out.println("point 1");
+			//System.out.println("point 1");
 			Gson gson = new Gson();
 			HashMap<String, String> jHashmap = new HashMap<String, String>();
 		//System.out.println("Session" + session.getId());
 		String custid = request.getParameter("custid");
-		System.out.println("PostImage point 2");
+		//System.out.println("PostImage point 2");
 		String caption = request.getParameter("caption");
-		System.out.println("PostImage point 3");
+		//System.out.println("PostImage point 3");
 
 		String imagedata = request.getParameter("imagedata");
-		System.out.println("PostImage point 3");
+		//System.out.println("PostImage point 3");
 
 		String picname = request.getParameter("picname");
 		
