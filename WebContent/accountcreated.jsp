@@ -16,32 +16,16 @@
       out.println(request.getAttribute("message"));
       out.println("</p>");
   }//if
-  String from = "DONOTREPLAY@MyStuffsOnline.com";
-  String fromname = "Do not reply - MyStuffsOnline.com";
-  String to = null;
-  String message = null;
-  String subject = "Account Validation";
-  String test = (String) request.getAttribute("validationGUID");
+  
   //http://localhost:2020/MystuffWeb/edu.byu.isys413.jmcmurdi.actions.Valadate.action?vcode=0000013d6b3142ad57b11ba6001000fd00d100f6&emailvcode=mcmurdiej%40gmail.com&mysubmitter=Create+Account
   //System.out.println("test: " + test);
   //new SearchCriteria(columnName, searchfor)
-  Customer c = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("validation", test));
-  to = c.getEmail();
-  String tempsymbol = "%40";
-  String emailaddress = to.replaceAll("@", tempsymbol);
-  String address = "http://localhost:2020/MystuffWeb/edu.byu.isys413.jmcmurdi.actions.Valadate.action?vcode=" + test + "&emailvcode=" + emailaddress + "&mysubmitter=Create+Account";
+  //Customer c = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("validation", test));
+  
 /* 
   message = "This is your lucky day.  You've just signed up for MyStuffsOnline.com \nRemember to validate your account by going here "
 		  + address; */
-  message = "This is your lucky day! <br> You've just registerd for a mystuffsonline.com account. <br>Remeber to validate your account by clicking this link: <a href = " + address +">Validate Account</a> <br> Welcome to the club! ";
-  //System.out.println("Customer object name is : " + c.getFirstName());
-  try{
-	  BatchEmail.send(from, fromname, to, subject, message);
-	  String temp= "test";
-	  //BatchEmail.main(null);
-  }catch(Exception e){
-	  e.printStackTrace();
-  }
+  
 
 %>
 <div class = container width = 60%>

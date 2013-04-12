@@ -131,9 +131,12 @@
 			<div class="control-group">
 				<label class="control-label"for "zip">Zip Code:</label>
 				<div class="controls">
-					<input
-				type="submit" id="submit" name="mysubmitter" value="Create Account"
-				class="btn btn-success"  disabled="disabled">
+					<input class="input-large" type="text" size="50" name="zip">
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<input type="submit" id="submit" name="mysubmitter" value="Create Account" class="btn btn-success"  disabled="disabled">
 				</div>
 			</div>
 			

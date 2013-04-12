@@ -43,7 +43,7 @@ public class CreateCustomer implements Action {
 		Customer c = BusinessObjectDAO.getInstance().create("Customer");
 		c.setFirstName(request.getParameter("firstname"));
 		c.setLastName(request.getParameter("lastname"));
-		c.setPassword(request.getParameter("password"));
+		c.setPassword(request.getParameter("password1"));
 //		c.setPassword("test");
 //		System.out.println("Password: " + request.getParameter("password"));
 		c.setAddress(request.getParameter("address"));
@@ -63,6 +63,27 @@ public class CreateCustomer implements Action {
 		tempm.setCreditCard(request.getParameter("creditcard"));
 		c.save();
 		tempm.save();
+		
+		String from = "DONOTREPLAY@MyStuffsOnline.com";
+		  String fromname = "Do not reply - MyStuffsOnline.com";
+		  String to = null;
+		  String message = null;
+		  String subject = "Account Validation";
+		  String test = c.getValidation();
+		  to = c.getEmail();
+		  String tempsymbol = "%40";
+		  String emailaddress = to.replaceAll("@", tempsymbol);
+		  //String address = "http://localhost:2020/MystuffWeb/edu.byu.isys413.jmcmurdi.actions.Valadate.action?vcode=" + test + "&emailvcode=" + emailaddress + "&mysubmitter=Create+Account";
+		  String address = "http://mystuffsonline.com/edu.byu.isys413.jmcmurdi.actions.Valadate.action?vcode=" + test + "&emailvcode=" + emailaddress + "&mysubmitter=Create+Account";
+		  message = "This is your lucky day! <br> You've just registerd for a mystuffsonline.com account. <br>Remeber to validate your account by clicking this link: <a href = " + address +">Validate Account</a> <br> Welcome to the club! ";
+		  //System.out.println("Customer object name is : " + c.getFirstName());
+		  try{
+			  BatchEmail.send(from, fromname, to, subject, message);
+			  String temp= "test";
+			  //BatchEmail.main(null);
+		  }catch(Exception e){
+			  e.printStackTrace();
+		  }
 	} catch (Exception e){
 		System.out.println("failure");
 	}

@@ -111,27 +111,36 @@ public class Login implements Action {
 			session.setAttribute("storelist", stores);
 			if (c != null) {
 				if (c.getPassword().equals(password)) {
-					session.setAttribute("customer", c);
-					session.setAttribute("user", c.getFirstName());
-					Customer cust = (Customer) (session.getAttribute("customer"));
+					//session.invalidate();
+					Cache.getInstance().clear();
+					 //cust = (Customer) (session.getAttribute("customer"));
+					 Customer cust = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("id", c.getId()));
 					//System.out.println(cust.getFirstName());
-					if (c.isVerified() == true) {
+					if (cust.isVerified() == true) {
+						session.setAttribute("customer", c);
+						session.setAttribute("user", c.getFirstName());
 						return "/products.jsp";
+						
+					}else{
+						request.setAttribute("message", "something is borked" + cust.getId() +  " " + cust.isVerified());
+						return "/Login.jsp";
+						//prod
+//						request.setAttribute("message", "incorrect username or password");
+//						return "/Login.jsp";
 					}
-					request.setAttribute("message", "incorrect username or password");
-					return "/Login.jsp";
+					
 				} else {
-					request.setAttribute("message", "incorrect username or password");
+					request.setAttribute("message", "2");
 					return "/Login.jsp";
 				}
 
 			} else {
-				request.setAttribute("message", "incorrect username or password");
+				request.setAttribute("message", "3");
 				return "/Login.jsp";
 			}
 
 		}
-		request.setAttribute("message", "incorrect username or password");
+		request.setAttribute("message", "4");
 		return "/Login.jsp";
 
 	}

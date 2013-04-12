@@ -12,7 +12,8 @@ public class Valadate implements Action {
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String emailaddress = request.getParameter("emailvcode");
-		Customer c1 = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("email", emailaddress));
+		String code = request.getParameter("vcode");
+		Customer c1 = BusinessObjectDAO.getInstance().searchForBO("Customer", new SearchCriteria("validation", code));
 		if (c1 != null) {
 			if (c1.getValidation().equals(request.getParameter("vcode")));{
 				c1.setVerified(true);
