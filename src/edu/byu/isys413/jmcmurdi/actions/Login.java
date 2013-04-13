@@ -72,7 +72,19 @@ public class Login implements Action {
 
 						jHashmap.put("piclist", tempjson);
 						
-						//String picJson = 
+						HashMap<String, Double> picprices = new HashMap<String, Double>();
+						List printlist = BusinessObjectDAO.getInstance().searchForAll("Print");
+						for (int i = 0; i < printlist.size(); i++){
+							Print tempPrint = (Print) printlist.get(i);
+							String tempsize = tempPrint.getSize();
+							double tempcost = tempPrint.getPrice();
+							picprices.put(tempsize, tempcost);
+						}
+						
+						String picpricesjson = gson.toJson(picprices);
+						//System.out.println("json of the stringdouble pairs: " + picpricesjson);
+						jHashmap.put("picprices", picpricesjson);
+//						//String picJson = 
 					
 					} // if msisverified();
 						// for (Store s: stores){
