@@ -2,15 +2,18 @@ package edu.byu.isys413.jmcmurdi.actions;
 
 import javax.servlet.http.*;
 
+import com.google.gson.Gson;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 import edu.byu.isys413.jmcmurdi.web.*;
 import edu.byu.isys414.jmcmurdi.IntexII.*;
 import java.util.*;
 
-public class MakeMoney implements Action {
+public class MobileMakeMoney implements Action {
 	/** Constructor */
-	public MakeMoney() {
+	public MobileMakeMoney() {
 		// no op
 	}
 	SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
@@ -35,38 +38,46 @@ public class MakeMoney implements Action {
 	 */
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// ensure we have a number to guess for
-		//System.out.println("Make Money Started");
+		System.out.println("Mobile Make Money Started");
 		HttpSession session = request.getSession();
 		//System.out.println("Session" + session.getId());
+		Gson gson = new Gson();
+		HashMap<String, String> jHashmap = new HashMap<String, String>();
+		String customer = (String) request.getParameter("customerid");
 		
-		Customer c = (Customer) session.getAttribute("customer");
-		String pid = request.getParameter("prodid");
-		String sid = request.getParameter("storeid");
-		String tempchargeprice = (request.getParameter("total"));
-		String prodprice = request.getParameter("prodprice");
+		//System.out.println("Customer string " + customer);
 		
-		//System.out.println ("String chargeprice: " + tempchargeprice);
-		//System.out.println ("String prodprice: " + prodprice);
+		String tempint = (String) request.getParameter("quantity");
+		
+		
+		
+		
+		double q = Double.parseDouble(tempint);
+		
+		System.out.println("double  " + q);
+		
+		Customer c = BusinessObjectDAO.getInstance().searchForBO("customer", new SearchCriteria("id",customer));
+		
+		String tempchargeprice = (request.getParameter("cost"));
+		
 		
 		double chargeprice = Double.parseDouble(tempchargeprice);
 		
 		System.out.println("double chargeprice: " + chargeprice);
 		
-		double tax = Double.parseDouble(request.getParameter("tax"));
+		//double tax = Double.parseDouble(request.getParameter("tax"));
 		
-		System.out.println("Double tax: " + tax);
+		//System.out.println("Double tax: " + tax);
 		
 		
-		Product tp = BusinessObjectDAO.getInstance().searchForBO("product", new SearchCriteria("id", pid));
+		//Product tp = BusinessObjectDAO.getInstance().searchForBO("product", new SearchCriteria("id", pid));
 		//System.out.println("Product type " + p.getProdType());
 		
-		Store s = BusinessObjectDAO.getInstance().searchForBO("store", new SearchCriteria("id", sid));
+		//Store s = BusinessObjectDAO.getInstance().searchForBO("store", new SearchCriteria("id", sid));
 		//System.out.println("Store id: " + s.getId());
 
 
-		
-		//TODO save transaction object with all the datas
-		// Uncomment email line
+	
 		
 		
 		Transaction t = BusinessObjectDAO.getInstance().create("Transaction");
@@ -79,7 +90,7 @@ public class MakeMoney implements Action {
 		//ConceptualRental cr = BusinessObjectDAO.getInstance().searchForBO("ConceptualRental", new SearchCriteria("id", p.getCprodid()));
 		String custEmail = c.getEmail();
 		String message = "Congratulations on your purchase from mystuffsonline.com - a myer Photography company. " +
-				" <br>Your order: \"" + tp.getName() + "\" is waiting for you, come pick it up at " + s.getLocation();
+				" <br>Your picture(s) are waiting";
 		String subject = "Order Confirmation";
 		String from = "DoNotReply@mystuffsonline.com";
 		String fromname = "Robot";
@@ -88,47 +99,40 @@ public class MakeMoney implements Action {
 		
 		//System.out.println( "prod type" + p.getProdType());
 		
-		if (tp.getProdType().equals("pproduct")){
-			System.out.println("boom baby!" + tp.getProdType());
-			PProduct p = BusinessObjectDAO.getInstance().searchForBO("product", new SearchCriteria("id", tp.getId()));
-			p.setStatus("sold");
-			p.save();
-		}else{
-			System.out.println("oh noes " + tp.getProdType());
-			StoreProd p = BusinessObjectDAO.getInstance().searchForBO("storeprod", new SearchCriteria("cprodid", tp.getId()));
-			if( p == null){
-				System.out.println(tp.getId());
-				System.out.println("Oh shit");
-			}
-			System.out.println("Store prod id: " + p.getId());
-			int quantityleft = p.getQuantityleft();
-			System.out.println("Starting at " + quantityleft + " left");
-			p.setQuantityleft(p.getQuantityleft() - 1);
-			
-			System.out.println("Currently " + quantityleft + " left");
-			p.save();
-			System.out.println("step4");
-		}
+//		if (tp.getProdType().equals("pproduct")){
+//			System.out.println("boom baby!" + tp.getProdType());
+//			PProduct p = BusinessObjectDAO.getInstance().searchForBO("product", new SearchCriteria("id", tp.getId()));
+//			p.setStatus("sold");
+//			p.save();
+//		}else{
+//			System.out.println("oh noes " + tp.getProdType());
+//			StoreProd p = BusinessObjectDAO.getInstance().searchForBO("storeprod", new SearchCriteria("cprodid", tp.getId()));
+//			if( p == null){
+//				System.out.println(tp.getId());
+//				System.out.println("Oh shit");
+//			}
+//			System.out.println("Store prod id: " + p.getId());
+//			int quantityleft = p.getQuantityleft();
+//			System.out.println("Starting at " + quantityleft + " left");
+//			p.setQuantityleft(p.getQuantityleft() - 1);
+//			
+//			System.out.println("Currently " + quantityleft + " left");
+//			p.save();
+//			System.out.println("step4");
+//		}
 		
 		
 		
 		//Transaction here
 		
 		Transaction trans = BusinessObjectDAO.getInstance().create("Transaction");
-		Sale sale = BusinessObjectDAO.getInstance().create("Sale");
-		sale.setChargeamount(chargeprice);
-		sale.setProdid(tp.getId());
-		sale.setQuantity(1);
-		sale.setRevtype("Sale");
-		sale.setStoreid(s.getId());
-		sale.setTransid(trans.getId());
-		
-		sale.save();
+		Printorder po = BusinessObjectDAO.getInstance().create("Printorder");
+		po.setQuantity(q);
 		
 		Payment pay = BusinessObjectDAO.getInstance().create("Payment");
 		pay.setPayamount(chargeprice);
 		pay.setPaychange(0);
-		pay.setType("Sale");
+		pay.setType("Print Order");
 		
 		pay.save();
 		
@@ -146,8 +150,8 @@ public class MakeMoney implements Action {
 		trans.setPaymentid(pay.getId());
 		trans.setCustomerid(c.getId());
 		
-		trans.setSubtotal(chargeprice-tax);
-		trans.setTax(tax);
+		//trans.setSubtotal(chargeprice-tax);
+		//trans.setTax(tax);
 		trans.setTotal(pay.getPayamount());
 		trans.setTransdate(today);
 		
@@ -166,7 +170,7 @@ public class MakeMoney implements Action {
 				double renttotal = 0;
 
 				for (RevSource rs3 : trans.getRevsources()) {
-					if (rs3.getRevtype().equals("Sale")) {
+					if (rs3.getRevtype().equals("Sale") || rs3.getRevtype().equals("Print Order")) {
 						salestotal += rs3.getChargeamount();
 					} else {
 						renttotal += rs3.getChargeamount();
@@ -189,35 +193,39 @@ public class MakeMoney implements Action {
 				}
 
 			} else if (i == 2) {
-				dc.setAmount(trans.getTax());
-				dc.setGlName("Sales Tax");
-				dc.setIsDebit(false);
-				dc.setJournalEntryid(je.getId());
-				dc.save();
+//				dc.setAmount(trans.getTax());
+//				dc.setGlName("Sales Tax");
+//				dc.setIsDebit(false);
+//				dc.setJournalEntryid(je.getId());
+//				dc.save();
 			} else if (i == 3) {
-				dc.setAmount(trans.getComtotal());
-				dc.setGlName("Commission Expense");
-				dc.setIsDebit(true);
-				dc.setJournalEntryid(je.getId());
-				dc.save();
+//				dc.setAmount(trans.getComtotal());
+//				dc.setGlName("Commission Expense");
+//				dc.setIsDebit(true);
+//				dc.setJournalEntryid(je.getId());
+//				dc.save();
 			} else if (i == 4) {
-				dc.setAmount(trans.getComtotal());
-				dc.setGlName("Commission Payable");
-				dc.setIsDebit(false);
-				dc.setJournalEntryid(je.getId());
-				dc.save();
+//				dc.setAmount(trans.getComtotal());
+//				dc.setGlName("Commission Payable");
+//				dc.setIsDebit(false);
+//				dc.setJournalEntryid(je.getId());
+//				dc.save();
 			} else if (i == 5) {
-				dc.setAmount(trans.getSubtotal());
-				dc.setGlName("Inventory");
-				dc.setIsDebit((false));
-				dc.setJournalEntryid(je.getId());
-				dc.save();
+//				dc.setAmount(trans.getSubtotal());
+//				dc.setGlName("Inventory");
+//				dc.setIsDebit((false));
+//				dc.setJournalEntryid(je.getId());
+//				dc.save();
 			}
 		}
 		trans.setJournalentryid(je.getId());
 		trans.save();
+		jHashmap.put("status", "success");
 		
-	return "/ThumbsUp.jsp";
+		String json = gson.toJson(jHashmap);
+		request.setAttribute("mobileTdata", json);
+		
+	return "/mobiletrans.jsp";
 	}
 	
 }
